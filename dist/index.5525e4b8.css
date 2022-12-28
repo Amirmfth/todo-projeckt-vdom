@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  max-width: 1920px;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  color: var(--dark-color);
+  background: var(--bg-gradient);
+  cursor: default;
+  place-items: center;
+  padding: 2rem;
+  display: grid;
+}
+
+#app {
+  width: 80%;
+}
+
+/*# sourceMappingURL=index.5525e4b8.css.map */
