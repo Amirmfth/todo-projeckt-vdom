@@ -673,21 +673,10 @@ const $app = (0, _hyperRender.hyperRender)(AppTreeElm);
 const appElm = document.querySelector(".container");
 (0, _mount.mount)($app, appElm);
 let $rootEl = (0, _mount.mount)($app, appElm);
-// store.dispatch({
-// type: "ADD",
-// target: "task",
-// payload: {
-//     id: Math.random().toString(16).slice(2),
-//     title: "ok",
-//     doneStatus: false
-//     },
-//   });
 const newAppElm = AppTree;
 const patch = (0, _diff.diff)(AppTreeElm, newAppElm);
 $rootEl = patch($rootEl);
 AppTreeElm = newAppElm;
-// setInterval(() => {
-// }, 4000);
 function createStore(reducer, initialState) {
     if (!isFunction(reducer)) throw new Error(`Reducer should be a function, but got "${kindOf(reducer)}"`);
     if (isFunction(initialState)) throw new Error("InitialState couldn't be a function");
@@ -856,18 +845,25 @@ function createTask({ id , title: titleText , doneStatus  }) {
                 id: elementId
             }
         });
-        console.log(doneStatus);
-        if (doneStatus) {
-            console.log(event.target.parentElement.parentElement);
-            event.target.parentElement.parentElement.classList.add("done");
-        }
+    // if(doneStatus) {
+    //     event.target.parentElement.parentElement.classList.add("done")
+    // }
     });
     liELM.append(doneButtonELM);
-    const titleDivELM = document.createElement("span");
-    titleDivELM.classList.add("title-div");
-    const titleTextNode = document.createTextNode(titleText);
-    titleDivELM.append(titleTextNode);
-    liELM.append(titleDivELM);
+    let titleDivELM;
+    if (doneStatus) {
+        titleDivELM = document.createElement("strike");
+        titleDivELM.classList.add("title-div");
+        const titleTextNode = document.createTextNode(titleText);
+        titleDivELM.append(titleTextNode);
+        liELM.append(titleDivELM);
+    } else {
+        titleDivELM = document.createElement("span");
+        titleDivELM.classList.add("title-div");
+        const titleTextNode1 = document.createTextNode(titleText);
+        titleDivELM.append(titleTextNode1);
+        liELM.append(titleDivELM);
+    }
     const deleteNodeELM = document.createElement("button");
     deleteNodeELM.classList.add("delete-node-btn");
     const deleteNodeIcon = document.createElement("i");

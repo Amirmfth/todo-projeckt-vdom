@@ -147,22 +147,11 @@ const appElm = document.querySelector(".container");
 mount($app, appElm)
 let $rootEl = mount($app, appElm);
 
-    // store.dispatch({
-    // type: "ADD",
-    // target: "task",
-    // payload: {
-    //     id: Math.random().toString(16).slice(2),
-    //     title: "ok",
-    //     doneStatus: false
-    //     },
-    //   });
+    
     const newAppElm = AppTree;
     const patch = diff(AppTreeElm, newAppElm);
     $rootEl = patch($rootEl);
     AppTreeElm = newAppElm;
-    // setInterval(() => {
-
-    // }, 4000);
 
 
 
@@ -423,21 +412,29 @@ doneButtonELM.addEventListener("click", (event) => {
           id: elementId
       }
   })
-  console.log(doneStatus)
-  if(doneStatus) {
-      console.log(event.target.parentElement.parentElement)
-      event.target.parentElement.parentElement.classList.add("done")
-  }
+  // if(doneStatus) {
+  //     event.target.parentElement.parentElement.classList.add("done")
+  // }
   
 });
 
-liELM.append(doneButtonELM)
 
-const titleDivELM = document.createElement("span");
-titleDivELM.classList.add("title-div");
-const titleTextNode = document.createTextNode(titleText)
-titleDivELM.append(titleTextNode)
-liELM.append(titleDivELM)
+liELM.append(doneButtonELM)
+let titleDivELM;
+if(doneStatus) {
+  titleDivELM = document.createElement("strike");
+  titleDivELM.classList.add("title-div");
+  const titleTextNode = document.createTextNode(titleText)
+  titleDivELM.append(titleTextNode)
+  liELM.append(titleDivELM)
+} else {
+  titleDivELM = document.createElement("span");
+  titleDivELM.classList.add("title-div");
+  const titleTextNode = document.createTextNode(titleText)
+  titleDivELM.append(titleTextNode)
+  liELM.append(titleDivELM)
+}
+
 
 const deleteNodeELM = document.createElement("button");
 deleteNodeELM.classList.add("delete-node-btn");
